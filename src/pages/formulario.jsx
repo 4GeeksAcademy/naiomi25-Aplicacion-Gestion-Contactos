@@ -91,7 +91,8 @@ const handleSubmit = (event) => {
     <input type="number" className="form-control" value = {telefono} onChange={(e) => setTelefono(e.target.value)} id="telefono"/>
   </div>
   <div className="col-12">
-          <button type="submit" className="btn btn-primary">Enviar</button>
+          <button type="submit" className="btn btn-outline-dark">Enviar</button>
+          <p>*Para ver los contactos, volver a agenda</p>
   </div>
 
 </form>

@@ -75,13 +75,13 @@ export const Home = () => {
 <Formulario showAgenda={showAgenda} />
 		return (
 			<>
-			<p>contactos  {store.contacts.length}</p>
 			
-			  <div className="row row-cols-1 row-cols-md-6 g-4 m-2">
+			
+			  <div className="  row row-cols-1 row-cols-md-6 g-4 m-2">
 				{store.contacts.map((contact) => (
 				  <div className="col" key={contact.id}>
-					<div className="card">
-					  <img src={'https://cdn3d.iconscout.com/3d/premium/thumb/contacto-5084463-4251146.png?f=webp'} className="card-img-top" alt="..." />
+					<div className="card cardModel">
+					  <img src={'https://cdn3d.iconscout.com/3d/premium/thumb/contacto-5084463-4251146.png?f=webp'} className="card-img-top imagenAvatar" alt="iavatarr de contacto" />
 					  <div className="card-body">
 						<h5 className="card-title in">
 						  <i className="fa-solid fa-location-dot"></i> {contact.name}

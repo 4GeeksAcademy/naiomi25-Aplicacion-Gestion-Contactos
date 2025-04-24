@@ -1,0 +1,24 @@
+body{
+    background-image: url(https://media.istockphoto.com/id/857920492/es/foto/fondo-abstracto-geometricpaper-en-suaves-tonos-pastel-rosas-y-azules.jpg?s=612x612&w=0&k=20&c=Yr2NoXfW2y5RNod9YgVHQVWDkvoTbzGzrN6lUpepGY0=);
+    background-position: center;
+    background-size: cover;
+    min-height: 100vh;
+   
+}
+
+
+.contador{
+    
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    box-shadow:4px 4px 6px rgba(245, 243, 243, 0.1);
+    border-radius: 10px;
+    
+}
+.cardModel{
+    background-image:url( https://img.freepik.com/fotos-premium/fondo-blanco-suave-textura-tela_39919-171.jpg);
+    background-position: center;
+    background-size: cover;
+    box-shadow:15px 15px 6px rgba(25, 25, 25, 0.1);
+}
+.imagenAvatar{
+}
