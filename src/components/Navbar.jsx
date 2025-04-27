@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Formulario } from "../pages/formulario";
+import { CrearContacto } from "../pages/CrearContacto.jsx";
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 
 
@@ -16,7 +16,7 @@ export const Navbar = () => {
 				</Link>
 				<h2 className="contador text-light">Contactos {store.contacts.length}</h2>
 				<div className="ml-auto">
-					<Link to="/formulario">
+					<Link to="/crear-contacto">
 						<button className="btn btn-light text-info-emphasis">Añadir nuevo contacto</button>
 					</Link>
 				</div>

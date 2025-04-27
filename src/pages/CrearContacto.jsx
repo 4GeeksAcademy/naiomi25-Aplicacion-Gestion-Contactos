@@ -1,12 +1,28 @@
-import {React, } from "react";
+import {React, useEffect, } from "react";
 import { useState ,} from "react";
+import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
+import contacListReducer from "../store.js";
 
-export const Formulario = ({showAgenda,editar,id}) => {
-
+export const CrearContacto = ({ editar,id,contacto}) => {
+  const {dispatch} = useGlobalReducer
+ 
   const [nombre, setNombre] = useState("");
   const [direccion, setDireccion] = useState("");
   const [telefono, setTelefono] = useState("");
   const [email, setEmail] = useState("");
+
+  useEffect(()=>{
+    
+   if (contacto) {
+    setNombre(contacto.name || '')
+    setDireccion(contacto.address || '')
+    setEmail(contacto.email || '')
+    setTelefono(contacto.phone || '')
+
+  }
+},[contacto])
+
+  
   
 
  
@@ -41,8 +57,10 @@ export const Formulario = ({showAgenda,editar,id}) => {
         setDireccion("");
         setTelefono("");
         setEmail("");
-        showAgenda()
-         console.log('Contact created:', data);
+        dispatch({ type: 'seeContacts', payload: data.contacts })
+       
+
+         console.log('Contacto creado ver data:', data);
       })
       .catch(error => {
         console.error('There was a problem with the fetch operation:', error);
@@ -57,10 +75,12 @@ const handleSubmit = (event) => {
     event.preventDefault();
     if (editar && id) {
      editar(nombre, telefono, email, direccion);
+    
      
     } else {
       createContact();
-    }
+   }
+  
     setNombre("");
     setDireccion("");
     setTelefono("");

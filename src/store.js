@@ -29,10 +29,12 @@ export default function contacListReducer(store, action = {}) {
           contacts :store.contacts.filter((contacto)=> contacto.id != action.payload)
         }
 
-      case 'editcontacts':
+       case 'editcontacts':
         return {
+          ...store,
+          contacts : store.contacts.find((contact)=>contact.id === parseInt(id)  )
           
-        }
+         }
      
       }
           

@@ -1,7 +1,7 @@
 import rigoImageUrl from "../assets/img/rigo-baby.jpg";
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 import { useEffect, useState } from "react";
-import { Formulario } from "./formulario.jsx";
+import { CrearContacto, } from "./CrearContacto.jsx";
 import { ContactDelete } from "./EliminarContacto.jsx";
 import { useNavigate } from "react-router-dom";
 
@@ -72,7 +72,7 @@ export const Home = () => {
 
 	
 	
-<Formulario showAgenda={showAgenda} />
+<CrearContacto showAgenda={showAgenda} />
 		return (
 			<>
 			

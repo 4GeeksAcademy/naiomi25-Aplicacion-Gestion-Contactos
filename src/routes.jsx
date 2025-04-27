@@ -9,7 +9,7 @@ import { Layout } from "./pages/Layout";
 import { Home } from "./pages/Home";
 import { Single } from "./pages/Single";
 //import { Demo } from "./pages/Demo";
-import { Formulario } from "./pages/formulario"; 
+import { CrearContacto } from "./pages/CrearContacto"; 
 import { Editcontact } from "./pages/EditarContacto"; 
 export const router = createBrowserRouter(
     createRoutesFromElements(
@@ -21,12 +21,12 @@ export const router = createBrowserRouter(
 
       // Root Route: All navigation will start from here.
 
-      <Route path="/" element={<Layout />}  >
-        {/* Nested Routes: Defines sub-routes within the BaseHome component. */}
-        <Route path= "/" element={<Home />} />
-        <Route path="/single/:theId" element={ <Single />} />  {/* Dynamic route for single items */}
-        <Route path="/formulario" element={<Formulario />} />
-        <Route path="/editar-contacto/:id" element={<Editcontact />} />
-      </Route>
-    )
-);
+        <Route path="/" element={<Layout />}  >
+          {/* Nested Routes: Defines sub-routes within the BaseHome component. */}
+          <Route path= "/" element={<Home />} />
+          <Route path="/single/:theId" element={ <Single />} />  {/* Dynamic route for single items */}
+          <Route path="/crear-contacto" element={<CrearContacto />} />
+          <Route path="/editar-contacto/:id" element={<Editcontact />} />
+        </Route>
+      )
+  );

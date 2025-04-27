@@ -1,12 +1,28 @@
 import { StoreProvider } from "../hooks/useGlobalReducer";
 import { useParams } from "react-router-dom";
-import { Formulario } from "./formulario";
+import { CrearContacto } from "./CrearContacto";
+import { useEffect, useState } from "react";
+import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 
- 
 
-export const Editcontact = ({showAgenda}) => {
 
+export const Editcontact = () => {
+
+const {dispatch,store} = useGlobalReducer
 const {id } = useParams()
+
+const [contactoEditado, setContactoEditado] = useState(null);
+
+useEffect(() => {
+    if (store && store.contacts) {
+      const contacto = store.contacts.find((contact) => contact.id === parseInt(id));
+      if (contacto) {
+        setContactoEditado(contacto);
+      }
+    }
+  }, [id]);
+
+
 
     const editarContacto = (nombre,telefono,email,direccion)=>{
        
@@ -15,14 +31,9 @@ const {id } = useParams()
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({
-        
-                name:nombre,
-                phone: telefono,
-                email: email,
-                address: direccion,
+            body: JSON.stringify({ name: nombre, phone: telefono, email, address: direccion }),
               
-            }),
+            
         })
             .then(response => {
                 if (!response.ok) {
@@ -33,7 +44,8 @@ const {id } = useParams()
             .then(data => {
                 
                 console.log('Contacto editado:', data);
-                showAgenda(); 
+                dispatch({ type: 'editcontacts', payload: data.contacts }); 
+               // showAgenda()
             })
             .catch(error => {
                 console.error('Error:', error);
@@ -45,7 +57,7 @@ const {id } = useParams()
 
 
 return (
-   <Formulario id = {id} editar = {editarContacto}/>
+   <CrearContacto id = {id} editar = {editarContacto} contacto = {contactoEditado}/>
 )
 
    
