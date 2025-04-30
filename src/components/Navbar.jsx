@@ -6,15 +6,14 @@ import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 export const Navbar = () => {
 	const {store} = useGlobalReducer()
 
-	
-
+	const contactCount = store && store.contacts ? store.contacts.length : 0
 	return (
 		<nav className="navbar navbar-light bg-dark">
 			<div className="container">
 				<Link className=" text-decoration-none" to="/">
 					<span className="navbar-brand mb-0 h1 text-light">Agenda</span>
 				</Link>
-				<h2 className="contador text-light">Contactos {store.contacts.length}</h2>
+				<h2 className="contador text-light">Contactos {contactCount}</h2>
 				<div className="ml-auto">
 					<Link to="/crear-contacto">
 						<button className="btn btn-light text-info-emphasis">Añadir nuevo contacto</button>

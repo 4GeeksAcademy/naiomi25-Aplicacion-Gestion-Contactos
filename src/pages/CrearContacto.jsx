@@ -2,9 +2,12 @@ import {React, useEffect, } from "react";
 import { useState ,} from "react";
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 import contacListReducer from "../store.js";
+import { useNavigate } from "react-router-dom";
 
 export const CrearContacto = ({ editar,id,contacto}) => {
-  const {dispatch} = useGlobalReducer
+  const {dispatch} = useGlobalReducer()
+  const navigate = useNavigate()
+
  
   const [nombre, setNombre] = useState("");
   const [direccion, setDireccion] = useState("");
@@ -23,9 +26,6 @@ export const CrearContacto = ({ editar,id,contacto}) => {
 },[contacto])
 
   
-  
-
- 
 
   const createContact = () => {
        const data = {
@@ -59,6 +59,7 @@ export const CrearContacto = ({ editar,id,contacto}) => {
         setEmail("");
         dispatch({ type: 'seeContacts', payload: data.contacts })
        
+       
 
          console.log('Contacto creado ver data:', data);
       })
@@ -75,18 +76,20 @@ const handleSubmit = (event) => {
     event.preventDefault();
     if (editar && id) {
      editar(nombre, telefono, email, direccion);
+     navigate("/")
+    
+    // setNombre("");
+    // setDireccion("");
+    // setTelefono("");
+    // setEmail("");
     
      
     } else {
       createContact();
+      navigate("/")
    }
   
-    setNombre("");
-    setDireccion("");
-    setTelefono("");
-    setEmail("");
-    
-  }
+   }
     
 
     return(
@@ -111,8 +114,8 @@ const handleSubmit = (event) => {
     <input type="number" className="form-control" value = {telefono} onChange={(e) => setTelefono(e.target.value)} id="telefono"/>
   </div>
   <div className="col-12">
-          <button type="submit" className="btn btn-outline-dark">Enviar</button>
-          <p>*Para ver los contactos, volver a agenda</p>
+          <button type="submit" className="btn btn-outline-dark" > Enviar </button>
+          
   </div>
 
 </form>

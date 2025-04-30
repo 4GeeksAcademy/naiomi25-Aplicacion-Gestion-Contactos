@@ -8,8 +8,8 @@ import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 
 export const Editcontact = () => {
 
-const {dispatch,store} = useGlobalReducer
-const {id } = useParams()
+const {dispatch,store} = useGlobalReducer()
+const {id} = useParams()
 
 const [contactoEditado, setContactoEditado] = useState(null);
 
@@ -20,7 +20,7 @@ useEffect(() => {
         setContactoEditado(contacto);
       }
     }
-  }, [id]);
+  }, [id,store]);
 
 
 
@@ -44,7 +44,10 @@ useEffect(() => {
             .then(data => {
                 
                 console.log('Contacto editado:', data);
-                dispatch({ type: 'editcontacts', payload: data.contacts }); 
+
+                const updatedContact = {id:parseInt(id), name: nombre, phone: telefono, email, address: direccion }
+
+                dispatch({ type: 'editcontacts', payload: updatedContact }); 
                // showAgenda()
             })
             .catch(error => {

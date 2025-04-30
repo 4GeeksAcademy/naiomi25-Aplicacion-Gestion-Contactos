@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { CrearContacto, } from "./CrearContacto.jsx";
 import { ContactDelete } from "./EliminarContacto.jsx";
 import { useNavigate } from "react-router-dom";
+import { array } from "prop-types";
 
 
 
@@ -14,7 +15,7 @@ export const Home = () => {
 	const navigate = useNavigate()
 
 	useEffect(() => {
-		createAgenda()
+		//createAgenda()
 		showAgenda()
 
 	}, [])
@@ -56,7 +57,8 @@ export const Home = () => {
 		})
 			.then(response => {
 				if (!response.ok) {
-					throw new Error('Network response was not ok');
+					//throw new Error('Network response was not ok');
+					createAgenda()
 				}
 				return response.json();
 			})
@@ -70,21 +72,24 @@ export const Home = () => {
 	};
 
 
+	const contactsAvailable = store && store.contacts && Array.isArray(store.contacts)
 	
-	
-<CrearContacto showAgenda={showAgenda} />
+
 		return (
 			<>
 			
 			
 			  <div className="  row row-cols-1 row-cols-md-6 g-4 m-2">
-				{store.contacts.map((contact) => (
+				{contactsAvailable  && store.contacts.length > 0  && store.contacts.map((contact) => (
 				  <div className="col" key={contact.id}>
 					<div className="card cardModel">
-					  <img src={'https://cdn3d.iconscout.com/3d/premium/thumb/contacto-5084463-4251146.png?f=webp'} className="card-img-top imagenAvatar" alt="iavatarr de contacto" />
+					<img src={`https://api.dicebear.com/7.x/adventurer/svg?seed=${(contact.name)}`}
+  					className="card-img-top imagenAvatar"
+  					alt={`Avatar de ${contact.name}`}/>
+
 					  <div className="card-body">
 						<h5 className="card-title in">
-						  <i className="fa-solid fa-location-dot"></i> {contact.name}
+						<i className="fa-solid fa-user"></i> {contact.name}
 						</h5>
 						<p className="card-text"><i className="fa-solid fa-house"></i> {contact.address}</p>
 						<p className="card-text"><i className="fa-solid fa-phone"></i> {contact.phone}</p>

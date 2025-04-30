@@ -26,13 +26,13 @@ export default function contacListReducer(store, action = {}) {
       case 'deleteContact':
         return {
           ...store,
-          contacts :store.contacts.filter((contacto)=> contacto.id != action.payload)
+          contacts :store.contacts.filter((contacto)=> contacto.id !== action.payload)
         }
 
        case 'editcontacts':
         return {
           ...store,
-          contacts : store.contacts.find((contact)=>contact.id === parseInt(id)  )
+          contacts : store.contacts.map((contact)=>contact.id === action.payload.id ? action.payload : contact )
           
          }
      
